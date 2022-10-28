@@ -84,10 +84,21 @@ def change_direction(new_direction):
             direction=new_direction
 
 def check_collisions(snake):
-    pass
+    x, y = snake.coordinates[0]
 
+    if x < 0 or x >= GAME_WIDTH:
+        print("game over")
+        return True
+    if y < 0 or y >= GAME_HEIGHT:
+        print("game over")
+        return True
+    for body_parts in snake.coordinates[1:]:
+        if x == body_parts[0] and y==body_parts[1]:
+            return True
+    return False
+    
 def game_over():
-    pass
+    canvas.delete(ALL)
 
 window = Tk()
 window.title("Snake Game")
