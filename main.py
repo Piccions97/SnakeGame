@@ -4,9 +4,9 @@ from turtle import window_height
 
 from numpy import square
 
-GAME_WIDTH= 700
+GAME_WIDTH= 1000
 GAME_HEIGHT= 700
-SPEED = 50
+SPEED = 100
 SPACE_SIZE = 50
 BODY_PARTS = 3
 SNAKE_COLOR= "#00FF00"
@@ -99,6 +99,7 @@ def check_collisions(snake):
     
 def game_over():
     canvas.delete(ALL)
+    canvas.create_text(canvas.winfo_width()/2, canvas.winfo_height()/2, font=('consolas', 70), text="GAME OVER", fill="red", tag="game_over")
 
 window = Tk()
 window.title("Snake Game")
