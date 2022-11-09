@@ -64,20 +64,23 @@ def next_turn(snake, food, mainCanvas):
     else:
         window.after(SPEED, next_turn, snake, food, mainCanvas)
 
-def change_direction(old_direction, new_direction):
+def change_direction(new_direction):
+
+    global direction
+
     if new_direction == 'left':
-        if old_direction != 'right':
-            old_direction=new_direction
+        if direction != 'right':
+            direction = new_direction
     elif new_direction == 'right':
-        if old_direction != 'left':
-            old_direction=new_direction
+        if direction != 'left':
+            direction = new_direction
     elif new_direction == 'up':
-        if old_direction != 'down':
-            old_direction=new_direction
+        if direction != 'down':
+            direction = new_direction
     elif new_direction == 'down':
-        if old_direction != 'up':
-            old_direction=new_direction
-    return old_direction
+        if direction != 'up':
+            direction = new_direction
+    return direction
 
 def check_collisions(snake):
     x, y = snake.coordinates[0]
@@ -96,7 +99,7 @@ def game_over():
     canvas.delete(ALL)
     canvas.create_text(canvas.winfo_width()/2, canvas.winfo_height()/2, font=('consolas', 70), text="GAME OVER", fill="red", tag="game_over")
 
-
+direction = 'down'
 
 if __name__ == "__main__":
     window = Tk()
@@ -104,7 +107,7 @@ if __name__ == "__main__":
     window.resizable(False, False)
 
     score = 0
-    direction = 'down'
+    
     label = Label(window, text="Score:{}".format(score), font=('consolas', 40))
     label.pack()
 
@@ -122,10 +125,10 @@ if __name__ == "__main__":
 
     window.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
-    window.bind('<Left>', lambda event: change_direction(direction, 'left'))
-    window.bind('<Right>', lambda event: change_direction(direction, 'right'))
-    window.bind('<Up>', lambda event: change_direction(direction, 'up'))
-    window.bind('<Down>', lambda event: change_direction(direction, 'down'))
+    window.bind('<Left>', lambda event: change_direction('left'))
+    window.bind('<Right>', lambda event: change_direction('right'))
+    window.bind('<Up>', lambda event: change_direction('up'))
+    window.bind('<Down>', lambda event: change_direction('down'))
 
     snake=Snake(canvas)
     food=Food(canvas)

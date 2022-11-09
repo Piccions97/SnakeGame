@@ -16,11 +16,11 @@ def test_change_direction():
     y=int((screen_height/2 - window_height/2))
 
     root.geometry(f"{window_width}x{window_height}+{x}+{y}")
-    direction='down'
     #newSnake=Snake(newCanvas)
     #newFood=Food(newCanvas)
     newDirection='right'
-    direction=change_direction(direction, newDirection)
+    global direction
+    direction=change_direction(newDirection)
     assert (direction==newDirection)
 
 
