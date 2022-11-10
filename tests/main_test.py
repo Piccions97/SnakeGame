@@ -37,7 +37,9 @@ def test_check_collision():
 def test_correct_istances():
     newSnake=Snake(newCanvas)
     assert isinstance(newSnake, Snake)
+    newFood=Food(newCanvas)
+    assert isinstance(newFood, Food)
 
 def test_next_turn():
-    
+    pass
 
